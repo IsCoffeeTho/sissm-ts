@@ -1,0 +1,22 @@
+{
+	"sissm": {
+		"serverName": "My SISSM server",
+		"hostname": "127.0.0.1",
+		"port": 27102,
+		"queryPort": 27131,
+		"rootGUIDs": [
+			"76561198435611109" // replace with your own SteamGUID
+		],
+		"insurgency": {
+			"path": "~/.steam/SteamApps/common/sandstorm_server"
+		},
+		"rconPort": 27015,
+		"cheats": false,
+		"logs": {
+			"file": "./sissm.log",
+			"level": 2, // 0=critical 1=warn 2=info(default) 3=debug 4=raw,
+			"stdout": true
+		}
+	},
+	"groups": []
+}

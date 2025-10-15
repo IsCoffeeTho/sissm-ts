@@ -1,0 +1,21 @@
+{
+	"name": "sissm-ts",
+	"version": "1.4.1",
+	"module": "index.ts",
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"flags": {},
+	"private": true,
+	"scripts": {
+		"start": "bun run index.ts"
+	},
+	"type": "module",
+	"versionDate": "20251012-2000",
+	"dependencies": {
+		"rcon-client": "^4.2.5"
+	}
+}
