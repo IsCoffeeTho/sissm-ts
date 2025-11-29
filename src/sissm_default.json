@@ -1,22 +1,271 @@
 {
+	"iss": {
+		"path": "~/.steam/SteamApps/common/sandstorm_server",
+		"hostname": "127.0.0.1",
+		"gamePort": 27102,
+		"queryPort": 27131,
+		"rconPort": 27015,
+		"cheats": false
+	},
 	"sissm": {
 		"serverName": "My SISSM server",
+		"logFile": "./sissm.log",
+		"logLevel": 2,
+		"logStdout": true
+	},
+	"web": {
 		"hostname": "127.0.0.1",
-		"port": 27102,
-		"queryPort": 27131,
-		"rootGUIDs": [
-			"76561198435611109" // replace with your own SteamGUID
-		],
-		"insurgency": {
-			"path": "~/.steam/SteamApps/common/sandstorm_server"
+		"port": 3000
+	},
+	"permissionGroups": [
+		{
+			"name": "SrAdmin",
+			"attributes": [
+				"sradmin",
+				"admin",
+				"moderator",
+				"priport"
+			],
+			"bypassAliveOnly": true
 		},
-		"rconPort": 27015,
-		"cheats": false,
-		"logs": {
-			"file": "./sissm.log",
-			"level": 2, // 0=critical 1=warn 2=info(default) 3=debug 4=raw,
-			"stdout": true
+		{
+			"name": "Admin",
+			"attributes": [
+				"admin",
+				"moderator",
+				"priport"
+			],
+			"bypassAliveOnly": true
+		},
+		{
+			"name": "Moderator",
+			"attributes": [
+				"moderator",
+				"priport"
+			],
+			"bypassAliveOnly": true
+		},
+		{
+			"name": "Patron",
+			"attributes": [
+				"priport"
+			]
+		}
+	],
+	"tacnomic": [
+		{
+			"triggers": ["55"],
+			"capture": "Checking perimeter/windows for hostiles...",
+			"cache": "Checking perimeter around cache..",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["44", "pp", "!prep", "!p"],
+			"capture": "Testing Capture Point, Stepping IN then OUT",
+			"cache": "Planting/Readying explosives on Cache",
+			"aliveOnly": true,
+			"repeat": 3
+		},
+		{
+			"triggers": ["33"],
+			"capture": "STACK-UP for breach--<Neg> if NOT ready",
+			"cache": "Prepare for Destruct--<Meg> if NOT ready",
+			"aliveOnly": true,
+			"repeat": 3
+		},
+		{
+			"triggers": ["22", "aa", "!ask", "!a"],
+			"capture": "Ready to breach, <Neg> for wait",
+			"cache": "Ready to detonate, <Neg> for wait",
+			"aliveOnly": true,
+			"repeat": 3
+		},
+		{
+			"triggers": ["11"],
+			"capture": "!!! BREACH BREACH BREACH !!!",
+			"cache": "!!! FIRE IN THE HOLE !!!",
+			"aliveOnly": true,
+			"repeat": 3
+		},
+		{
+			"triggers": ["ff"],
+			"message": "!!! Breach on my FLASH-BANG or NADE !!!",
+			"aliveOnly": true,
+			"repeat": 3
+		},
+		{
+			"triggers": ["66"],
+			"message": "Covering you../With you.../Got your SIX",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["77"],
+			"message": "Resupplying/Reloading - Cover me!!",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["88"],
+			"message": "Going back for Resupply ['**' upon return]",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["**"],
+			"message": "Back in formation, let's rock!"
+		},
+		{
+			"triggers": ["00", "cc"],
+			"message": "Objective area is CLEAR - No Hostiles",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["99", "CC"],
+			"message": "Objective area is NOT CLEAR",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["mm"],
+			"message": "I'm moving forward!",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["rr"],
+			"message": "I'm going right...",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["ll"],
+			"message": "I'm going left...",
+			"aliveOnly": true
+		},
+		{
+			"triggers": ["ww"],
+			"capture": "GET OFF CAP POINT!! Team NOT ready!",
+			"cache": "Slow Down--DON'T DETONATE THE CACHE!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["xx", "!w", "!warn"],
+			"capture": "DO NOT TOUCH the point WITHOUT ASKING!!",
+			"cache": "DO NOT EXPLODE the cache WITHOUT ASKING!!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["XX"],
+			"message": "Restricted Zone camping is NOT allowed!!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["ii"],
+			"message": "Incoming enemy support attack - TAKE COVER!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["qq"],
+			"message": "Calling-in Support--DO NOT ADVANCED!!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["ee"],
+			"message": "Setting up Support--Ready explosive, WAIT FOR ORDER TO DETONATE",
+			"repeat": 3
+		},
+		{
+			"triggers": ["ss"],
+			"message": "DETONATE NOW NOW NOW!!!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["oo"],
+			"message": "Wait one, Sniper/SAW/MG going high."
+		},
+		{
+			"triggers": ["OO"],
+			"message": "Sniper/SAW/MG ready at primary position."
+		},
+		{
+			"triggers": ["gg"],
+			"message": "Good game everyone!"
+		},
+		{
+			"triggers": ["tt"],
+			"message": "Tango-Mike (Thanks!)"
+		},
+		{
+			"triggers": ["uu"],
+			"message": "You're welcome!"
+		},
+		{
+			"triggers": ["yy"],
+			"message": "Affirmative!"
+		},
+		{
+			"triggers": ["nn"],
+			"message": "Negative!"
+		},
+		{
+			"triggers": ["vv"],
+			"message": "Cancel last / Nevermind"
+		},
+		{
+			"triggers": ["hh"],
+			"message": "Halt! Wait! Need a little time!",
+			"repeat": 3
+		},
+		{
+			"triggers": ["dd"],
+			"message": "I'm down..."
+		},
+		{
+			"triggers": ["//"],
+			"message": "SitRep? - What's the go ahead?"
+		},
+		{
+			"triggers": ["WW"],
+			"message": "Whiskey-Tango-Foxtrot!?"
+		},
+		{
+			"triggers": ["jj"],
+			"message": "I'm ready!"
+		},
+		{
+			"triggers": ["JJ"],
+			"message": "I'm NOT ready!"
+		},
+		{
+			"triggers": ["DD"],
+			"message": "Medic on the way!!!!!!"
+		},
+		{
+			"triggers": ["TT"],
+			"capture": "Type '22' then '11' before breach",
+			"cache": "Type '22' then '11' before detonating",
+			"repeat": 3
+		},
+		{
+			"triggers": ["??"],
+			"message": "Visit cassandra.confluvium.info for list of shortcuts"
+		},
+		{
+			"triggers": ["zz"],
+			"message": "!!! WARNING: We BAN RUSHERS and Non-Team players !!!",
+			"repeat": 3
+		}
+	],
+	"commands": {
+		"_": {
+			"alias": [""]
 		}
 	},
-	"groups": []
+	"reasonShorthand":{
+		"rush": "Tactical servers require you concur with your squad BEFORE entering objective zone or exploding a cache.",
+		"tk": "Team kills pre-game/in-game, post-mortem body multiations are prohibited.",
+		"attack": "Personal attacks against other players are prohibited.",
+		"troll": "Reason unspecified",
+		"sex": "Gender discrimination, improper or explicit content in your comms, player name, profile or avatar",
+		"race": "Racist behaviour is strictly prohibited on this server",
+		"afk": "Ide Timeout / AFK",
+		"tac": "This is a Military-Tactical server. Please work with your squad.",
+		"tap": "Tactical servers require you ask your squad BEFORE tapping, or stepping into the objective zone."
+	},
+	"include": []
 }
