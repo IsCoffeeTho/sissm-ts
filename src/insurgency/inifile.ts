@@ -63,6 +63,8 @@ export class iniSection {
 				var value = this.#data[key];
 				switch (typeof value) {
 					case "string":
+						if (["true", "false"].indexOf(value.toLowerCase()) != -1 || value.match(/^(\/|\w\:\\|\()/))
+							break;
 						value = `"${value.replace(/[\x00-\x1F\x7F-\xFFFF]/g, (m) => {
 							switch (m) {
 								case "\x07":
@@ -102,8 +104,6 @@ export class iniSection {
 		}
 		return retval;
 	}
-
-	async deserialize() {}
 }
 
 export default class iniFile extends dataFile {
@@ -234,7 +234,7 @@ export default class iniFile extends dataFile {
 
 			var key = line.slice(0, seperatorIdx).trim();
 			var value = line.slice(seperatorIdx + 1).trim();
-			if (value.match(/^(\d*\.)?\d+$/g)) {
+			if (value.match(/^-?(\d*\.)?\d+$/g)) {
 				section.set(key, parseFloat(value));
 				continue;
 			}

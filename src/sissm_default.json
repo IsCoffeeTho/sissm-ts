@@ -6,6 +6,7 @@
 		"queryPort": 27131,
 		"rconPort": 27015,
 		"cheats": false
+		
 	},
 	"sissm": {
 		"serverName": "My SISSM server",

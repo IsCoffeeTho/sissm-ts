@@ -1,43 +1,40 @@
 import { EventEmitter } from "events";
-
-const defaultGameOptions = {
-	path: `${process.platform == "win32" ? `C:\\Program Files (x86)\\Steam\\steamapps\\common` : `${process.env["HOME"]}/.steam/SteamApps/common`}/sandstorm_server`,
-	hostname: "127.0.0.1",
-	port: 27102,
-	queryPort: 27131,
-	gameSettings: {
-		cheats: false,
-		
-	}
-};
+import type { RecursivePartial } from "../types";
+import defaultGameOptions from "./defaultGameOptions";
+import { resolveRecursivePartial } from "./defaultPicker";
 
 type gameServerOptions = typeof defaultGameOptions;
 
 export default class issGameServer extends EventEmitter {
 	path: string;
-	constructor(options?: Partial<gameServerOptions>) {
+	constructor(options?: RecursivePartial<gameServerOptions>) {
 		super();
-		var opt = <gameServerOptions>Object.assign(Object.assign({}, defaultGameOptions), options);
+		var opt = resolveRecursivePartial<gameServerOptions>(
+			defaultGameOptions,
+			<RecursivePartial<gameServerOptions>>options
+		);
+		console.log(opt);
 		this.path = opt.path;
 	}
 	
-	async adjustConfigFiles(configPath: string) {
-		
-	}
-
-	async start() {
-		var gamePath = this.path;
-		var configPath = this.path;
+	async adjustConfigFiles() {
+		var gameCfgPath = this.path;
+		var serverCfgPath = this.path;
 		if (process.platform == "win32") {
-			gamePath += `\\InsurgencyServer.exe`;
-			configPath += `\\Insurgency\\Saved\\Config\\WindowsServer`;
+			gameCfgPath += `\\Insurgency\\Saved\\Config\\WindowsServer`;
+			serverCfgPath += `\\Insurgency\\Config\\Server`;
 		} else if (process.platform == "linux") {
-			gamePath += `/Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping`;
-			configPath += `/Insurgency/Saved/Config/LinuxServer`;
+			gameCfgPath += `/Insurgency/Saved/Config/LinuxServer`;
+			serverCfgPath += `/Insurgency/Config/Server`;
 		} else {
 			throw new Error(`No issGameServer implementation for "${process.platform}" platforms`);
 		}
-		await this.adjustConfigFiles(configPath);
+		
+	}
+	
+	
+
+	async start() {
 		
 	}
 }
